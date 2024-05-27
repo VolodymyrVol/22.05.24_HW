@@ -28,6 +28,20 @@ public:
 
 		price = Price;
 	}
+	Car(Car& obj)
+	{
+		model = new char[strlen(obj.model) + 1];
+		strcpy_s(model, strlen(obj.model) + 1, obj.model);
+
+		country = new char[strlen(obj.country) + 1];
+		strcpy_s(country, strlen(obj.country) + 1, obj.country);
+
+		color = new char[strlen(obj.color) + 1];
+		strcpy_s(color, strlen(obj.color) + 1, obj.color);
+
+		year = obj.year;
+		price = obj.price;
+	}
 	~Car() // destruct
 	{
 		delete[] model;
@@ -60,7 +74,7 @@ public:
 			<< "\nCountry: " << country
 			<< "\nColor: " << color
 			<< "\nYear: " << year 
-			<< "\nPrice: " << price << endl;
+			<< "\nPrice: " << price << endl << endl;
 	}
 };
 
@@ -69,6 +83,9 @@ public:
 
 int main()
 {
-	Car a{"Nissan", "Japan", "Grey", 2007, 30000};
+	Car a{"Nissan", "Japan", "Gray", 2007, 30000};
 	a.Show();
+
+	Car b = a;
+	b.Show();
 }
